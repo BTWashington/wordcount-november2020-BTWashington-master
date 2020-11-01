@@ -7,7 +7,7 @@ namespace WordCount
 {
     class WordCounter
     {
-        private string _fileName = "mobydick.txt";
+        private string _fileName = " ";
         private ulong _totalCount;
         private string _timeElapsed;
 
@@ -25,7 +25,7 @@ namespace WordCount
         public WordCounter(string filename) {
             FileToCount = filename;
             TotalCount = 0;
-            TimeElapsed = "";
+            TimeElapsed = " ";
         }
         
         public ulong CountAllWords()
