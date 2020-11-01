@@ -7,7 +7,7 @@ namespace WordCount
 {
     class WordCounter
     {
-        private string _fileName = " mobydick.txt ";
+        private string _fileName = "mobydick.txt";
         private ulong _totalCount;
         private string _timeElapsed;
 
@@ -33,8 +33,9 @@ namespace WordCount
             ulong count = 0;
             try
             {
+                byte[] Array = new byte[64];
                 
-                byte[] Array = new byte[1];
+                //byte[] Array = new byte[64];
                 Span<byte> Byte = new Span<byte>(Array);
 
                 using (FileStream StreamedFile = File.Open(FileToCount, FileMode.Open, FileAccess.Read))

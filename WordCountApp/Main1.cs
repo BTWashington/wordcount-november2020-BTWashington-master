@@ -17,6 +17,6 @@ public class Main1
 
         Console.WriteLine("Counted {0} words in {1}", Counter.TotalCount, sw.Elapsed);
 
-
+        Console.ReadKey();
     }
 }
