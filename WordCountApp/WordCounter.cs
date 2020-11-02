@@ -30,28 +30,36 @@ namespace WordCount
         
         public ulong CountAllWords()
         {
+            string[] SentenceSplit;
             ulong count = 0;
             try
             {
-                byte[] Array = new byte[64];
-                
-                //byte[] Array = new byte[64];
-                Span<byte> Byte = new Span<byte>(Array);
-
-                using (FileStream StreamedFile = File.Open(FileToCount, FileMode.Open, FileAccess.Read))
+                using (StreamReader FileReader = new StreamReader(FileToCount))
                 {
-                    while (StreamedFile.Read(Byte) > 0)
+                    string line = string.Empty;
+                    while((line = FileReader.ReadLine()) != null)
                     {
-                        if (Encoding.Default.GetString(Byte.ToArray()) == " " || Encoding.Default.GetString(Byte.ToArray()) == "\n")
+                        SentenceSplit = line.Split(new char[] { ' ','\n','!','?','.','"',';',':','-','(',')','*','`' }, StringSplitOptions.RemoveEmptyEntries);
+                        foreach (var item in SentenceSplit)
                         {
-                            //Increase Count if it is reading an empty space or new line;
                             count++;
                         }
                     }
-                    // also count the last word
-                    count++;
-                    StreamedFile.Close();
-                }                   
+#region Attempt
+                    //while (StreamedFile.Read(Byte) > 0)
+                    //{
+                    //    if (Encoding.Default.GetString(Byte.ToArray()) == " " || Encoding.Default.GetString(Byte.ToArray()) == "\n")
+                    //    {
+                    //        //Increase Count if it is reading an empty space or new line;
+                    //        count++;
+                    //    }
+                    //}
+                    //// also count the last word
+                    //count++;
+                    //StreamedFile.Close();
+                    #endregion
+
+                }
             }
             catch (FileNotFoundException)
             {
